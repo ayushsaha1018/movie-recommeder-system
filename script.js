@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const recommendationsContainer = document.getElementById("recommendations");
 
   // Populate movie dropdown
-  fetch("http://127.0.0.1:5000/api/movie_list")
+  fetch("https://movie-recommeder-system-j4gd.onrender.com/api/movie_list")
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   recommendButton.addEventListener("click", function () {
     const selectedMovie = movieSelect.value;
     if (selectedMovie) {
-      fetch("http://127.0.0.1:5000/api/recommendations", {
+      fetch("https://movie-recommeder-system-j4gd.onrender.com/api/recommendations", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -37,7 +37,7 @@ def recommend(movie, movies, similarity):
 
 @app.route('/api/movie_list', methods=['GET'])
 def get_movie_list():
-    movies = movies_model
+    movies = decompress_pickle("movie/movie_list.pbz2")
     movie_list = movies['title'].values.tolist()
     return jsonify({'movie_list': movie_list})
 
@@ -45,8 +45,8 @@ def get_movie_list():
 def get_recommendations():
     data = request.json
     selected_movie = data.get('selected_movie')
-    movies = movies_model  # Load movies
-    similarity = similarity_model  # Load similarity matrix
+    movies = decompress_pickle("movie/movie_list.pbz2")  # Load movies
+    similarity = decompress_pickle("movie/similarity.pbz2")  # Load similarity matrix
     recommended_movie_names, recommended_movie_posters = recommend(selected_movie, movies, similarity)
     return jsonify({
         'recommended_movie_names': recommended_movie_names,
@@ -54,6 +54,4 @@ def get_recommendations():
     })
 
 if __name__ == '__main__':
-    movies_model = decompress_pickle("movie/movie_list.pbz2")
-    similarity_model = decompress_pickle("movie/similarity.pbz2")
     app.run(debug=True)
