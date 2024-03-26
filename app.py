@@ -3,6 +3,7 @@ import bz2file as bz2
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 import requests
+import gunicorn
 
 app = Flask(__name__)
 CORS(app)

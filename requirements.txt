@@ -1,3 +1,4 @@
+gunicorn==21.2.0
 bz2file==0.98
 Flask==2.2.5
 Flask_Cors==4.0.0
